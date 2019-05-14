@@ -1,0 +1,32 @@
+
+错误 :
+npm install
+修复npm ERR! cb()never called!的错误
+96  locky丶
+ 0.1 2019.04.04 17:00 字数 137 阅读 43评论 0喜欢 1
+在运行npm install时报如下错误：
+
+npm ERR! cb() never called!
+
+npm ERR! This is an error with npm itself. Please report this error at:
+npm ERR!     <https://npm.community>
+
+npm ERR! A complete log of this run can be found in:
+npm ERR!     /Users/lenno/.npm/_logs/2019-04-04T08_14_08_150Z-debug.log
+顿时方了，网上一顿猛搜，终于找到解决方案，跟我一步步修复该问题。
+
+以管理员模式打开cmd清除你的npm缓存 (mac电脑在npm前加sudo):
+npm cache clean -f
+清除完缓存后，安装最新版本的Node helper：
+ npm install -g n
+然后安装npm包管理助手
+npm install -g n --force
+用n助手安装最新的稳定版的node
+n stable
+
+npm rebuild node-sass
+
+错误 :
+cross-en not found
+一、 Linux（Homestead）或Mac环境下：
+你要做的，只是将你的package.json文件中的cross-env删掉即可：

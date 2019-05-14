@@ -1,0 +1,77 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: admin
+ * Date: 2019/5/8
+ * Time: 14:40
+ */
+admin@admin-PC MINGW32 /d/phpStudy2018/PHPTutorial/WWW/vue-spa/blog
+$ php artisan make:model Post -m
+Model created successfully.
+Created Migration: 2019_05_08_063840_create_posts_table
+
+admin@admin-PC MINGW32 /d/phpStudy2018/PHPTutorial/WWW/vue-spa/blog
+$ php artisan make:factory PostFactory --model=Post
+Factory created successfully.
+
+admin@admin-PC MINGW32 /d/phpStudy2018/PHPTutorial/WWW/vue-spa/blog
+$ php artisan migrate
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table
+Migrating: 2019_05_08_063840_create_posts_table
+Migrated:  2019_05_08_063840_create_posts_table
+
+
+'user_id'=>factory(App\User::class)->create()->id
+
+admin@admin-PC MINGW32 /d/phpStudy2018/PHPTutorial/WWW/vue-spa/blog
+$ php artisan tinker
+Psy Shell v0.9.9 (PHP 7.2.1 — cli) by Justin Hileman
+
+>>> factory(App\Post::class)->make()
+=> App\Post {#2893
+    title: "Non ea sit est sit sunt fugit.",
+     body: "Non consequatur dolorum ut assumenda velit esse animi fuga. Maxime s
+apiente qui rerum laboriosam quae omnis provident qui. Rem culpa animi nihil dol
+or. Vitae dolores illum quasi ut minima harum.",
+     user_id: 1,
+   }
+>>>
+
+>>> factory(App\Post::class,55)->create()
+
+
+passport 
+composer require laravel/passport=~4.0
+
+admin@admin-PC MINGW32 /d/phpStudy2018/PHPTutorial/WWW/vue-spa/blog
+$ php artisan migrate
+Migrating: 2016_06_01_000001_create_oauth_auth_codes_table
+Migrated:  2016_06_01_000001_create_oauth_auth_codes_table
+Migrating: 2016_06_01_000002_create_oauth_access_tokens_table
+Migrated:  2016_06_01_000002_create_oauth_access_tokens_table
+Migrating: 2016_06_01_000003_create_oauth_refresh_tokens_table
+Migrated:  2016_06_01_000003_create_oauth_refresh_tokens_table
+Migrating: 2016_06_01_000004_create_oauth_clients_table
+Migrated:  2016_06_01_000004_create_oauth_clients_table
+Migrating: 2016_06_01_000005_create_oauth_personal_access_clients_table
+Migrated:  2016_06_01_000005_create_oauth_personal_access_clients_table
+
+admin@admin-PC MINGW32 /d/phpStudy2018/PHPTutorial/WWW/vue-spa/blog
+$ php artisan passport:install
+Encryption keys generated successfully.
+Personal access client created successfully.
+Client ID: 1
+Client Secret: 9q6jyAk31PeO8GBgP2kS9OAeaCWlWXhIM0GQ6i8W
+Password grant client created successfully.
+Client ID: 2
+Client Secret: DQA6GhzI8Ov6tsQJKmNjwreelSDXlke7KhhNKpCX
+
+
+nginx+windows curl本地post会响应超时 原理：127.0.0.1:9000端口被占用
+
+
+
