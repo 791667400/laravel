@@ -49564,28 +49564,31 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-     data: function data() {
-          return {
-               name: '',
-               email: '',
-               password: ''
-          };
-     },
+    data: function data() {
+        return {
+            name: '',
+            email: '',
+            password: ''
+        };
+    },
 
-     methods: {
-          login_method: function login_method() {
-               var formData = {
-                    username: this.email,
-                    password: this.password
-               };
-               axios.post('/api/login ', formData).then(function (response) {
-                    //JwtToken.setToken(response.data.access_token)
-                    // var ss=JwtToken.getToken;
-                    console.log(response);
-                    // this.$router.push({name:'confirm'})
-               });
-          }
-     }
+    methods: {
+        login_method: function login_method() {
+            var formData = {
+                username: this.email,
+                password: this.password
+            };
+            axios.post('/api/login ', formData).then(function (response) {
+                //JwtToken.setToken(response.data.access_token)
+                // var ss=JwtToken.getToken;
+                console.log(response);
+                // this.$router.push({name:'confirm'})
+            }).catch(function (error) {
+                console.log('error--');
+                console.log(error);
+            });
+        }
+    }
 });
 
 /***/ }),
@@ -49922,7 +49925,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       var formData = {
         client_id: '2',
-        client_secret: 'FYxL4iIpmXBU4XNjESfZYAVrF3qZHtOMeqrBHAJ6',
+        client_secret: 'DQA6GhzI8Ov6tsQJKmNjwreelSDXlke7KhhNKpCX',
         grant_type: 'password',
         scope: '',
         username: this.email,

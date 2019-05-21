@@ -47,7 +47,10 @@
                            // var ss=JwtToken.getToken;
                             console.log(response);
                             // this.$router.push({name:'confirm'})
-                       })
+                       }).catch(function (error) {
+                           console.log('error--');
+                       　　console.log(error);
+                       });
                 }
               }
         }

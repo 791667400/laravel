@@ -40,7 +40,7 @@
                 login_method(){
                        let formData={
                             client_id : '2',
-                            client_secret :'FYxL4iIpmXBU4XNjESfZYAVrF3qZHtOMeqrBHAJ6',
+                            client_secret :'DQA6GhzI8Ov6tsQJKmNjwreelSDXlke7KhhNKpCX',
                             grant_type:'password',
                             scope:'',
                             username:this.email,

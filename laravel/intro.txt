@@ -71,7 +71,10 @@ Client ID: 2
 Client Secret: DQA6GhzI8Ov6tsQJKmNjwreelSDXlke7KhhNKpCX
 
 
-nginx+windows curl本地post会响应超时 原理：127.0.0.1:9000端口被占用
+nginx+windows curl本地post会响应超时 （curl问题phpstudy）
+原因：127.0.0.1:9000端口被占用，在用户访问一个php页面的时候nginx已将该进程占用，在该进程又发起http请求时，nginx发现这个仅有的进程已被占用而造成阻塞，就这样造成了死锁，一直到超时。
+再新建一个域名 改成127.0.0.1:9001
+再用cmd 启动cgi 9001
 
 
 
