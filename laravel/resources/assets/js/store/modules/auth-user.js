@@ -8,8 +8,10 @@ export default {
     },
     mutations:{
         [types.SET_AUTH_USER](state,payload){
-            console.log(payload.user);
+            console.log(payload.myuser);
             state.auth=true;
+            state.name=payload.myuser.name;
+            state.email=payload.myuser.email
         }
     },
     actions :{
@@ -17,7 +19,8 @@ export default {
             console.log('set-auth-user');
             axios.get('/api/user').then( response => {
                 commit({
-                    type:types.SET_AUTH_USER
+                    type:types.SET_AUTH_USER,
+                    myuser:response.data
                 })
             })
         }

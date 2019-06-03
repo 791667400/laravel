@@ -8,8 +8,13 @@
 </template>
 <script>
     import TopMenu from './common/TopMenu'
-    
+    import JwtToken from '../helps/jwt'
     export default {
+        created(){
+            if(JwtToken.getToken()){
+                this.$store.dispatch("setAuthUser")
+            }
+        },
        components:{
              TopMenu
        }

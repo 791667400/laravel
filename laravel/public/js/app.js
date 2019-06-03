@@ -484,6 +484,24 @@ module.exports = {
 
 /***/ }),
 /* 2 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+   setToken: function setToken(token) {
+      console.log('storage-start');
+      window.localStorage.setItem('jwt_token', token);
+   },
+   getToken: function getToken() {
+      return window.localStorage.getItem('jwt_token');
+   },
+   removeToken: function removeToken() {
+      window.localStorage.removeItem('jwt_token');
+   }
+});
+
+/***/ }),
+/* 3 */
 /***/ (function(module, exports) {
 
 var g;
@@ -508,24 +526,6 @@ try {
 
 module.exports = g;
 
-
-/***/ }),
-/* 3 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony default export */ __webpack_exports__["a"] = ({
-   setToken: function setToken(token) {
-      console.log('storage-start');
-      window.localStorage.setItem('jwt_token', token);
-   },
-   getToken: function getToken() {
-      return window.localStorage.getItem('jwt_token');
-   },
-   removeToken: function removeToken() {
-      window.localStorage.removeItem('jwt_token');
-   }
-});
 
 /***/ }),
 /* 4 */
@@ -4823,7 +4823,7 @@ var index_esm = {
 /* harmony default export */ __webpack_exports__["a"] = (index_esm);
 
 
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(3)))
 
 /***/ }),
 /* 15 */
@@ -4844,7 +4844,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__store_index__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_App__ = __webpack_require__(84);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_App___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__components_App__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helps_jwt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helps_jwt__ = __webpack_require__(2);
 __webpack_require__(17);
 window.Vue = __webpack_require__(11);
 
@@ -22009,7 +22009,7 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(19)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(19)(module)))
 
 /***/ }),
 /* 19 */
@@ -48064,7 +48064,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(42).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(42).setImmediate))
 
 /***/ }),
 /* 42 */
@@ -48134,7 +48134,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
 /* 43 */
@@ -48327,7 +48327,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3), __webpack_require__(6)))
 
 /***/ }),
 /* 44 */
@@ -48336,7 +48336,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue_router__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__store_index__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helps_jwt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__helps_jwt__ = __webpack_require__(2);
 
 
 
@@ -48421,8 +48421,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         mark: 'hhhh'
     },
     mutations: _defineProperty({}, __WEBPACK_IMPORTED_MODULE_0__mutations_type__["a" /* SET_AUTH_USER */], function (state, payload) {
-        console.log(payload.user);
+        console.log(payload.myuser);
         state.auth = true;
+        state.name = payload.myuser.name;
+        state.email = payload.myuser.email;
     }),
     actions: {
         setAuthUser: function setAuthUser(_ref) {
@@ -48432,7 +48434,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
             console.log('set-auth-user');
             axios.get('/api/user').then(function (response) {
                 commit({
-                    type: __WEBPACK_IMPORTED_MODULE_0__mutations_type__["a" /* SET_AUTH_USER */]
+                    type: __WEBPACK_IMPORTED_MODULE_0__mutations_type__["a" /* SET_AUTH_USER */],
+                    myuser: response.data
                 });
             });
         }
@@ -48452,7 +48455,7 @@ var SET_AUTH_USER = 'SET_AUTH_USER';
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helps_jwt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helps_jwt__ = __webpack_require__(2);
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
@@ -49532,7 +49535,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helps_jwt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helps_jwt__ = __webpack_require__(2);
 //
 //
 //
@@ -49879,7 +49882,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helps_jwt__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__helps_jwt__ = __webpack_require__(2);
 //
 //
 //
@@ -50395,6 +50398,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu__ = __webpack_require__(86);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__common_TopMenu__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__helps_jwt__ = __webpack_require__(2);
 //
 //
 //
@@ -50407,9 +50411,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-   components: {
-      TopMenu: __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default.a
-   }
+    created: function created() {
+        if (__WEBPACK_IMPORTED_MODULE_1__helps_jwt__["a" /* default */].getToken()) {
+            this.$store.dispatch("setAuthUser");
+        }
+    },
+
+    components: {
+        TopMenu: __WEBPACK_IMPORTED_MODULE_0__common_TopMenu___default.a
+    }
 });
 
 /***/ }),

@@ -1,0 +1,68 @@
+Nav logo
+首页
+下载App
+搜索
+×
+广告
+vagrant搭建vue开发环境
+96  tiube00001 
+2018.03.24 19:13 字数 1377 阅读 676评论 3喜欢 4赞赏 1
+背景
+换电脑，或系统就需要重新搭建一次开发环境，费时费力（本人总是不折腾不舒服斯基）。而且，linux发行版缺少常用软件（例如，QQ,微信，迅雷等等），mac太贵（都是穷惹的），hackintosh驱动折腾到天荒地老，win系统……win系统能撸代码？！但是本屌丝，还是停留win上，毕竟游戏不能放弃。但是工作还是要做。顺理成章的就只能依靠虚拟环境了。
+
+尝试过vmare，virtualBox，但都坑在一个点上：虚拟机和宿主机的共享文件夹无法创建符号链接（symlink）。虽然可以依靠samba等软件一定程度上解决。但是真心不好用……
+
+在这个问题上折腾良久，终于找到了Vagrant。
+
+至于如何安装搭建Vagrant，百度上一搜一大把，我就不多说了。
+
+主题
+最近在尝试Vagrant上搭建web前段开发环境。
+虚拟机：centOS 7 x64，yum源：阿里，epel，webtatic。
+宿主机：win10
+vagrant网卡配置：网卡一：nat默认模式，网卡二：bridge桥接模式
+（我相当不喜欢nat，但是vagrant模式无法单网卡使用bridge）
+IDE：phpstorm，（webstorm也一毛一样）
+
+此次以初始化一个vue单页应用为例，介绍如何搭建一个前端开发环境
+
+一、安装node和npm
+yum install npm nodejs
+yum源上的版本可能不是最新的，可以自己用npm命令更新。
+
+二、全局安装webpack，vue-cli
+具体操作详见vue官方教程，这里只介绍我遇到的问题，及解决方法
+
+问题1：可能会出现error -21，无法创建符号链接的问题。
+解决：在win系统下，以管理员身份运行cmd，启动vagrant虚拟机就ok了
+
+问题2：全局安装vue-cli后，vue命令报错，找不到该命令
+原因：npm的lib存放目录导致，vue-cli的命令工具所在目录未被加入环境变量
+解决：
+1.执行：npm root -g 查看npm的所有包所在路径，以我自己的路径为例：/node_modules/lib/node_modules（并不是默认值，我自己修改过）
+
+2.而安装vue-cli后，vue命令工具的被存在/node_modules/bin中了，然后就很简单了，将这个路径加入环境变量就可以直接使用命令：vue init webpack my-project。（至于linux下将路径加入环境变量，都用vagrant+linux组合了，相信肯定会了）
+
+注：项目要被初始化在虚拟机与宿主机共享文件夹下，不然你就只能用vim写js了（虚拟机的linux一般不安装图形界面）
+
+问题3：npm run dev成功后，局域网内无法访问项目地址
+解决：修改 vue项目目录下->config->index.js，host:'localhost'为host:'0.0.0.0'
+
+问题四：在win系统下，编辑共享文件夹中的vue项目，无法热更新，无法刷新，只能重新运行：npm run dev
+解决：项目跟目录->config->index.js，dev配置数据，poll: false修改为：poll: true
+
+win下phpstorm(webstorm)配置
+1.在win下安装node，编辑器需要使用node，至于不安装的具体问题，我忘了……嘿嘿
+2.重新配置webpack的config，解决：import aaa from '@xxxx'，无法索引文件，export default xxx 提示unused之类之类的小麻烦，默认是没有正确索引到webpack.config.js的，如果已经索引到了，忽略此操作
+phpstorm：File | Settings | Languages & Frameworks | JavaScript | Webpack，修改文件路径：项目根目录/build/webpack.dev.conf.js
+
+至此，我遇到的小问题就暂时解决完了。如果还有，以后再更新。
+
+结语：vagrant的好处
+当在vagrant搭建好开发环境后，可以制作box镜像。然后，在其他电脑中可以直接使用此镜像，得到一毛一样的环境。那么，更换系统后快速搭建环境（恢复一个vagrant镜像只需要两分钟不到），统一多台电脑的开发环境，有助于团队协作。对于我来说，就是可以停留在win上继续使用各种免费的常用软件，以及打游戏的同时，使用linux做开发，嘿嘿。（macOS的常用软件数量还是不如win，尤其是免费的。至少我的使用过程中是这样感受到的）。对于生产环境，我也不知道……毕竟不是运维，公司的生产环境不会让我去折腾得。
+
+至于为啥不是docker，当初我在选择软件时，搜到docker的隔离级时：服务级隔离。我还是想要一个虚拟机这种完整隔离的系统。就一直没有尝试docker了，以后没事干了再去，毕竟不折腾不舒服斯基，嘿嘿~
+
+最后的最后打一局广告：php是最好的语言，phper是万能的~
+https://www.jianshu.com/p/e87ebc032924
+ 
